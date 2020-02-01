@@ -10,7 +10,7 @@ Many benefits can be gained by using a LXC container compared to a VM. The resou
 
 ***Note:*** _Before using this repo, make sure Proxmox is up to date._
 
-To create a new LXC container on Proxmox and setup Hass.io to run inside of it, run the following in a SSH connection or the Proxmox web shell.
+To create a new LXC container on Proxmox and setup Node Red to run inside of it, run the following in a SSH connection or the Proxmox web shell.
 
 ```
 bash -c "$(wget -qLO - https://github.com/MarcJenningsUK/proxmox_nodered_lxc/raw/master/create_container.sh)"
