@@ -60,7 +60,7 @@ TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
 # Download the NodeRed setup Script
-wget -qL https://raw.githubusercontent.com/MarcJenningsUK/proxmox_hassio_lxc/master/Node%20Red%20Setup/setupnodered.sh
+wget -qL https://raw.githubusercontent.com/MarcJenningsUK/proxmox_hassio_lxc/master/setupnodered.sh
 
 # Detect modules and automatically load at boot
 load_module aufs
