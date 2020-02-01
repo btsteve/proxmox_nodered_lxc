@@ -33,8 +33,8 @@ apt-get -qqy upgrade &>/dev/null
 msg "Installing prerequisites..."
 
 msg "-----------------"
-msg "At times, there will be very low CPU activity suring install"
-msg "I don't know why, but trust me, things are happening."
+msg "At times, there will be very low CPU activity during install"
+msg "I don't know why but trust me - things are happening."
 msg "-----------------"
 
 msg "Installing Node..."
@@ -42,6 +42,7 @@ apt-get -y install node.js &>/dev/null
 
 msg "Installing NPM..."
 apt-get -y install npm &>/dev/null
+
 msg "Installing PM2..."
 npm install -g pm2 &>/dev/null  # This will expose a bunch of errors.  They are ignorable, as far as I can tell.
 
@@ -49,12 +50,11 @@ npm install -g pm2 &>/dev/null  # This will expose a bunch of errors.  They are 
 msg "Installing Node Red..."
 npm install -g --unsafe-perm node-red &>/dev/null
 
-# Customize Docker configuration
+# Set up PM2 to manage startup of Node Red
 msg "Setting up PM2..."
 /usr/local/bin/pm2 start /usr/local/bin/node-red  #&>/dev/null
 /usr/local/bin/pm2 save #&>/dev/null
 /usr/local/bin/pm2 startup #&>/dev/null
-env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u nodeadmin --hp /home/nodeadmin #&>/dev/null
 
 # Cleanup container
 msg "Cleanup..."
