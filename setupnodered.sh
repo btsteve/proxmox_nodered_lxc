@@ -31,21 +31,26 @@ apt-get -qqy upgrade &>/dev/null
 
 # Install prerequisites
 msg "Installing prerequisites..."
-apt-get -y install node.js &>/dev/null
+msg "Installing Node..."
+apt-get -y install node.js #&>/dev/null
+
 ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
-apt-get -y install npm &>/dev/null
-npm install -g pm2 &>/dev/null
+
+msg "Installing NPM..."
+apt-get -y install npm #&>/dev/null
+msg "Installing PM2..."
+npm install -g pm2 #&>/dev/null
 
 # Install Node Red
 msg "Installing Node Red..."
-npm install -g --unsafe-perm node-red &>/dev/null
+npm install -g --unsafe-perm node-red # &>/dev/null
 
 # Customize Docker configuration
 msg "Setting up PM2..."
-pm2 start /usr/local/bin/node-red &>/dev/null
-pm2 save &>/dev/null
-pm2 startup &>/dev/null
-env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u nodeadmin --hp /home/nodeadmin &>/dev/null
+pm2 start /usr/local/bin/node-red#  #&>/dev/null
+pm2 save #&>/dev/null
+pm2 startup #&>/dev/null
+env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u nodeadmin --hp /home/nodeadmin #&>/dev/null
 
 # Cleanup container
 msg "Cleanup..."
