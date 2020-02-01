@@ -59,8 +59,8 @@ function load_module() {
 TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
-# Download setup script
-wget -qL https://github.com/whiskerz007/proxmox_hassio_lxc/raw/master/setup.sh
+# Download the NodeRed setup Script
+wget -qL https://github.com/MarcJenningsUK/proxmox_hassio_lxc/raw/master/setupnodered.sh
 
 # Detect modules and automatically load at boot
 load_module aufs
@@ -127,11 +127,11 @@ else
   mkfs.ext4 $(pvesm path $ROOTFS) &>/dev/null
 fi
 ARCH=$(dpkg --print-architecture)
-HOSTNAME=hassio
+HOSTNAME=nodered
 TEMPLATE_STRING="local:vztmpl/${TEMPLATE}"
 pct create $CTID $TEMPLATE_STRING -arch $ARCH -cores 1 -features nesting=1 \
   -hostname $HOSTNAME -net0 name=eth0,bridge=vmbr0,ip=dhcp -onboot 1 \
-  -ostype $OSTYPE -password "hassio" -rootfs $ROOTFS -storage $STORAGE >/dev/null
+  -ostype $OSTYPE -password "nodered" -rootfs $ROOTFS -storage $STORAGE >/dev/null
 
 # Modify LXC permissions to support Docker
 LXC_CONFIG=/etc/pve/lxc/${CTID}.conf
@@ -154,17 +154,17 @@ pct unmount $CTID && unset MOUNT
 # Setup container for Hass.io
 msg "Starting LXC container..."
 pct start $CTID
-pct push $CTID setup.sh /setup.sh -perms 755
-pct exec $CTID /setup.sh
+pct push $CTID setupnodered.sh /setupnodered.sh -perms 755
+pct exec $CTID /setupnodered.sh
 
 # Get network details and show completion message
 IP=$(pct exec $CTID ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2}')
-info "Successfully created Hass.io LXC to $CTID."
+info "Successfully created Node Red LXC to $CTID."
 msg "
 
 Hass.io is reachable by going to the following URLs.
 
-      http://${IP}:8123
-      http://${HOSTNAME}.local:8123
+      http://${IP}:1880
+      http://${HOSTNAME}.local:1880
 
 "
