@@ -1,3 +1,7 @@
+# Credits
+
+All credit for this work goes to Whiskerz007.  Check the base repo at https://github.com/whiskerz007/proxmox_hassio_lxc
+
 # Hass.io in Proxmox LXC container
 
 Many benefits can be gained by using a LXC container compared to a VM. The resources needed to run a LXC container are less than running a VM. Modifing the resouces assigned to the LXC container can be done without having to reboot the container. The serial devices connected to Proxmox can be shared with multiple LXC containers simulatenously.
