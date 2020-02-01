@@ -31,9 +31,9 @@ apt-get -qqy upgrade &>/dev/null
 
 # Install prerequisites
 msg "Installing prerequisites..."
-apt-get install node.js &>/dev/null
+apt-get -y install node.js &>/dev/null
 ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
-apt-get install npm &>/dev/null
+apt-get -y install npm &>/dev/null
 npm install -g pm2 &>/dev/null
 
 # Install Node Red
