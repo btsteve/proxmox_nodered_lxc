@@ -1,5 +1,5 @@
-LXC=$(whiptail --title "Radio list example" --radiolist \
-"Choose user's permissions" 20 78 4 \
+LXC=$(whiptail --title "LXC Installer" --radiolist \
+"Choose which container to create" 20 78 4 \
 "HomeAssistant" "Install Home Assistant (formerly Hass.io)" ON \
 "NodeRed" "Install Node Red" OFF  3>&1 1>&2 2>&3)
 
