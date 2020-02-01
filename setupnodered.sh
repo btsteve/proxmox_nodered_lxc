@@ -34,8 +34,6 @@ msg "Installing prerequisites..."
 msg "Installing Node..."
 apt-get -y install node.js #&>/dev/null
 
-ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
-
 msg "Installing NPM..."
 apt-get -y install npm #&>/dev/null
 msg "Installing PM2..."
